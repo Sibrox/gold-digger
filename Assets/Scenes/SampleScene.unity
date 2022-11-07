@@ -217,7 +217,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 489817545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc070d2764b4c7042b30d8de13d530d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fc6b2a631f15284bad8936ba63a63a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 1854057944}
@@ -353,6 +353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
+  isOver: 0
+  isFreezed: 0
   baseTime: 5
 --- !u!212 &1854057945
 SpriteRenderer:

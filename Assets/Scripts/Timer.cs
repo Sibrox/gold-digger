@@ -4,25 +4,53 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public double timer;
-
+    public double timer,freezingTimer;
     public double baseTime = 5.0;
-    // Start is called before the first frame update
+    public bool isOver = false;
+    public bool isFreezed = false;
+
     void Start()
     {
         timer = baseTime;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(timer < 0 ) {
+        if(timer < 0) {
+            this.gameOver();
             Debug.Log("GAME OVER");
         }
-        timer -= Time.deltaTime;
+        if(!isFreezed && !isOver){
+
+            timer -= Time.deltaTime;
+        }
+        
+        if(isFreezed){   
+
+            freezingTimer -= Time.deltaTime;
+
+            if(freezingTimer < 0){
+
+                freezingTimer = 0;
+                isFreezed = false;
+            }
+        }   
     }
 
     public void reset() {
+
         timer = baseTime;
+    }
+
+    public void gameOver(){
+
+        timer = 0;
+        isOver = true;
+    }
+
+    public void freeze(double freezingTimer){
+
+        this.freezingTimer = freezingTimer;
+        isFreezed = true;
     }
 }
