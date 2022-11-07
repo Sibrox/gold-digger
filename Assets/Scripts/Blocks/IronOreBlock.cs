@@ -1,10 +1,13 @@
-public class IronOreBlock : MonoBehaviour, BaseBlock {
+using UnityEngine;
+
+public class IronOreBlock : MonoBehaviour, Breakable {
     
     public Timer timer;
+    public Player player;
+    public int resistence = 3;
 
     void Start() {
         Debug.Log("Spawn");
-        public int resistence = 3;
     }
 
     void Update() {

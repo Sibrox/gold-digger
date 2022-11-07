@@ -1,10 +1,13 @@
-public class GoldOreBlock : MonoBehaviour, BaseBlock {
+using UnityEngine;
+
+public class GoldOreBlock : MonoBehaviour, Breakable {
     
     public Timer timer;
+    public Player player;
+    public int resistence = 4;
 
     void Start() {
         Debug.Log("Spawn");
-        public int resistence = 4;
     }
 
     void Update() {

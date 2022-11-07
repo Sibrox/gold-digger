@@ -1,10 +1,14 @@
-public class CopperOreBlock : MonoBehaviour, BaseBlock {
+using UnityEngine;
+
+public class CopperOreBlock : MonoBehaviour, Breakable {
     
     public Timer timer;
+    public Player player;
+    public int resistence = 2;
 
     void Start() {
         Debug.Log("Spawn");
-        public int resistence = 2;
+        
     }
 
     void Update() {
