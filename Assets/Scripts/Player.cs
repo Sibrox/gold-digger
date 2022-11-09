@@ -21,7 +21,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKey("a")) {
+            Debug.Log("PRESSED A");
+        }
     }
 
     string getTotalBlockDigged(){
