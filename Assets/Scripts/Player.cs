@@ -22,7 +22,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         if(Input.GetKey("a")) {
-            Debug.Log("PRESSED A");
+            Debug.Log("LEFT");
+            breakLeft();
+        }
+        if(Input.GetKey("d")) {
+            Debug.Log("RIGHT");
+            breakRight();
         }
     }
 
