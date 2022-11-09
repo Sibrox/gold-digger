@@ -1,8 +1,6 @@
 using UnityEngine;
 
-public class GtaBlock : MonoBehaviour, Breakable {
-    
-    public Timer timer;
+public class GtaBlock : Block {
     public int resistence = 5;
     private KeyCode[] pool,sequence;
     public int index = 0;

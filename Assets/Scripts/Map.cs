@@ -5,16 +5,16 @@ using UnityEngine.Tilemaps;
 
 public class Map : MonoBehaviour
 {
+    public int sizeOfLevel = 10;
     // Start is called before the first frame update
     void Start()
     {   
         var tileMap = this.GetComponent<Tilemap>();
-        for (var i = 0; i < 10; i++)
+        for (var i = 0; i < sizeOfLevel; i++)
         {
-            for (var j = 0; j < 10; j++)
+            for (var j = 0; j < sizeOfLevel; j++)
             {   
-                var block = new BaseBlock();
-                tileMap.SetTile(new Vector3Int(i,j,0),block.tile);
+                
             }
         }
     }
@@ -27,6 +27,6 @@ public class Map : MonoBehaviour
 
     public void Break(int axis_x, int axis_y)
     {
-
+        
     }
 }

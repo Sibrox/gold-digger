@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FreezeBlock : MonoBehaviour, Breakable
+public class FreezeBlock : Block
 {
-    public Timer timer; 
     public double freezingTimer;
 
     // Start is called before the first frame update

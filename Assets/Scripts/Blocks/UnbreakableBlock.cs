@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnbreakableBlock : MonoBehaviour, Breakable
+public class UnbreakableBlock : Block
 {
-    public Player player;
     public double stunTimer;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +17,7 @@ public class UnbreakableBlock : MonoBehaviour, Breakable
         
     }
 
-    public void onBreak(){
+    new void onBreak(){
 
         // player stun!
     }

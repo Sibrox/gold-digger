@@ -3,3 +3,6 @@ Library/
 My\ project/
 UserSettings/
 Temp/
+*.csproj
+*.sln
+.vscode/
