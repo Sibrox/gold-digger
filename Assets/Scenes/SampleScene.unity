@@ -405,6 +405,7 @@ MonoBehaviour:
   baseTime: 5
   isOver: 0
   isFreezed: 0
+  player: {fileID: 304047647}
 --- !u!212 &1854057945
 SpriteRenderer:
   m_ObjectHideFlags: 0

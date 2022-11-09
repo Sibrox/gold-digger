@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c997f8c59f49a4686897ff63a99802, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 5734ca85d24d08b48993ec5634c5a7fc, type: 2}
-  name: Base
-  timer: {fileID: 0}
-  value: 0
   player: {fileID: 0}
+  tile: {fileID: 11400000, guid: 5734ca85d24d08b48993ec5634c5a7fc, type: 2}
+  timer: {fileID: 0}
+  value: 10
+  name: Base
