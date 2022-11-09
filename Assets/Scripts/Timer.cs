@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     public bool isOver = false;
     public bool isFreezed = false;
 
+    public Player player;
     void Start()
     {
         timer = baseTime;
@@ -46,6 +47,9 @@ public class Timer : MonoBehaviour
 
         timer = 0;
         isOver = true;
+        var result = player.getTotalBlockDigged();
+        Debug.Log(result);
+        Debug.Log(player.score);
     }
 
     public void freeze(double freezingTimer){

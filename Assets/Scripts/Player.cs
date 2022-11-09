@@ -31,14 +31,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    string getTotalBlockDigged(){
+    public string getTotalBlockDigged(){
 
         int totalBlockDigged = 0;
         string recapLevelString = new string("");
 
         foreach (var item in playerItems)
         {
-            recapLevelString += item.Key+" :"+item.Value+"\n";
+            recapLevelString += item.Key+" :"+item.Value + "; ";
             totalBlockDigged += item.Value;
         }
 
