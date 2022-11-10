@@ -4,23 +4,9 @@ using UnityEngine;
 
 public class MimicBlock : Block
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey("a"))
-        {
-            onTap();
-        }
-    }
-
-    new void onTap(){
-
+    public override bool onTap(){
         timer.gameOver();
+        return true;
     }
 }

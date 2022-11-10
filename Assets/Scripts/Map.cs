@@ -42,8 +42,8 @@ public class Map : MonoBehaviour
 
         for (var row = 0; row < sizeOfLevel; row++) {
 
-            blocks[row, 0] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Gold)]) as GameObject).GetComponent<Block>();
-            blocks[row, sizeOfLevel - 1] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Unbreakable)]) as GameObject).GetComponent<Block>();
+            blocks[row, 0] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Mimic)]) as GameObject).GetComponent<Block>();
+            blocks[row, sizeOfLevel - 1] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Freeze)]) as GameObject).GetComponent<Block>();
             tileMap.SetTile(new Vector3Int(0, -row, 0), blocks[row,0].tile);
             tileMap.SetTile(new Vector3Int(sizeOfLevel - 1, -row, 0), blocks[row,sizeOfLevel - 1].tile);
         }
