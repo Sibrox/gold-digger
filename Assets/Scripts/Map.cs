@@ -35,15 +35,15 @@ public class Map : MonoBehaviour
                 int index = Random.Range(0,8);
                 Debug.Log("Prefab/Blocks/" + blocksPath[index]);
 
-                blocks[row,col] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[0]) as GameObject).GetComponent<Block>();
+                blocks[row,col] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[index]) as GameObject).GetComponent<Block>();
                 tileMap.SetTile(new Vector3Int(col,-row,0), blocks[row,col].tile);
             }
         }
 
         for (var row = 0; row < sizeOfLevel; row++) {
 
-            blocks[row, 0] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Mimic)]) as GameObject).GetComponent<Block>();
-            blocks[row, sizeOfLevel - 1] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Freeze)]) as GameObject).GetComponent<Block>();
+            blocks[row, 0] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Unbreakable)]) as GameObject).GetComponent<Block>();
+            blocks[row, sizeOfLevel - 1] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Unbreakable)]) as GameObject).GetComponent<Block>();
             tileMap.SetTile(new Vector3Int(0, -row, 0), blocks[row,0].tile);
             tileMap.SetTile(new Vector3Int(sizeOfLevel - 1, -row, 0), blocks[row,sizeOfLevel - 1].tile);
         }

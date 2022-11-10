@@ -102,4 +102,4 @@ MonoBehaviour:
   timer: {fileID: 0}
   value: 100
   type: 3
-  resistence: 1
+  resistence: 2

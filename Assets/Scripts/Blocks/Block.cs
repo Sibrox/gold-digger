@@ -27,8 +27,9 @@ public class Block : MonoBehaviour, Breakable {
         timer = GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<Timer>();
     }
 
-    public virtual bool onTap(){
+    public virtual bool onTap() {
+        player.addItemDigged(type.ToString(),value);
         timer.reset();
         return true;
-    }
+    }    
 }

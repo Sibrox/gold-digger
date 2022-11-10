@@ -6,7 +6,7 @@ public class OreBlock : Block{
 
     public int resistence;
 
-      public override bool onTap() {
+    public override bool onTap() {
         resistence -= 1;
         if( resistence <= 0) {
             player.addItemDigged(type.ToString(),value);
