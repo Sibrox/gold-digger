@@ -16,6 +16,6 @@ public class Follow : MonoBehaviour
     void Update()
     {
         var player_position = player.transform.position;
-        //this.transform.position = new Vector3(player_position.x)
+        this.transform.position = new Vector3(player_position.x, player_position.y, -10);
     }
 }
