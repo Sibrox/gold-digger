@@ -15,11 +15,11 @@ public class MimicBlock : Block
     {
         if (Input.GetKey("a"))
         {
-            onBreak();
+            onTap();
         }
     }
 
-    new void onBreak(){
+    new void onTap(){
 
         timer.gameOver();
     }

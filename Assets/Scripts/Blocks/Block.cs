@@ -27,8 +27,7 @@ public class Block : MonoBehaviour, Breakable {
         timer = GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<Timer>();
     }
 
-    public virtual bool onBreak(){
-
+    public virtual bool onTap(){
         timer.reset();
         return true;
     }

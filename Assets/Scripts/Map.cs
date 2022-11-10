@@ -42,7 +42,7 @@ public class Map : MonoBehaviour
 
         for (var row = 0; row < sizeOfLevel; row++) {
 
-            blocks[row, 0] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Unbreakable)]) as GameObject).GetComponent<Block>();
+            blocks[row, 0] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Gold)]) as GameObject).GetComponent<Block>();
             blocks[row, sizeOfLevel - 1] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[((int)BlockType.Unbreakable)]) as GameObject).GetComponent<Block>();
             tileMap.SetTile(new Vector3Int(0, -row, 0), blocks[row,0].tile);
             tileMap.SetTile(new Vector3Int(sizeOfLevel - 1, -row, 0), blocks[row,sizeOfLevel - 1].tile);
@@ -61,7 +61,7 @@ public class Map : MonoBehaviour
 
     public bool Break(int row, int col)
     {
-        var broken = blocks[row,col].onBreak();
+        var broken = blocks[row,col].onTap();
         if(broken)
             tileMap.SetTile(new Vector3Int(col,-row,0),none.tile);
 

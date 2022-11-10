@@ -5,30 +5,16 @@ using UnityEngine;
 public class OreBlock : Block{
 
     public int resistence;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKey("a")){
-            resistence--;
+      public override bool onTap() {
+        resistence -= 1;
+        if( resistence <= 0) {
+            player.addItemDigged(type.ToString(),value);
+            return true;
         }
-        if(resistence <= 0)
-        {
-            onBreak();
+        else {
+            return false;
         }
-    }
-
-
-      new void onBreak() {
-        
-        player.addItemDigged(type.ToString(),value);
-        base.onBreak();
-       
     }
 }
 

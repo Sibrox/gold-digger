@@ -12,7 +12,7 @@ public class UnbreakableBlock : Block
 
     }
 
-    public override bool onBreak(){
+    public override bool onTap(){
         return false;
     }
 }

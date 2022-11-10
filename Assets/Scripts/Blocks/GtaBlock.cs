@@ -40,7 +40,7 @@ public class GtaBlock : Block {
         
     }
 
-    new void onBreak() {
+    new void onTap() {
         
         timer.reset();
         score = timer.timer;
