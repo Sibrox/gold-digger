@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         col = map.GetSize() / 2 - 1;
-        row = -1;
+        row = 0;
         score = 0;
         isMoving = false;
     }
@@ -45,6 +45,10 @@ public class Player : MonoBehaviour
             Debug.Log("DOwn");
             breakDown();
         } 
+        if(Input.GetKeyDown("w")) {
+            Debug.Log("DOwn");
+            breakUp();
+        } 
     }
 
     public string getTotalBlockDigged(){
@@ -60,18 +64,32 @@ public class Player : MonoBehaviour
         
         return recapLevelString.Insert(0,"Total block digged: "+totalBlockDigged);
     }
-    public void breakLeft(){
 
-        map.Break(row,--col);
+    public void breakLeft(){
+        var broken = map.Break(row,col - 1);
+        if(broken) {
+            col -=1;
+        }
     }
 
     public void breakRight(){
 
-        map.Break(row, ++col);
+        var broken = map.Break(row, col + 1);
+        if(broken) {
+            col +=1;
+        }
     }
     public void breakDown(){
 
-        map.Break(++row, col);
+        var broken = map.Break(row + 1, col);
+        if(broken) {
+            row +=1;
+        }
+    }
+
+    public void breakUp() {
+        if(row > 0)
+            map.Break(row - 1, col);
     }
 
    public void addItemDigged(string item, double value){
