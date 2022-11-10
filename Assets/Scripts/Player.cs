@@ -7,7 +7,16 @@ public class Player : MonoBehaviour
 
     private Dictionary<string,int> playerItems = new Dictionary<string,int>();
     public Map map;
-    public int x,y;
+    public int row, col;
+
+    public float x {
+        get { return col; }  // get method
+    }
+
+    public float y {
+        get { return (-row); }  // get method
+    }
+
     public double score;
 
     bool isMoving;
@@ -15,8 +24,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        x = map.GetSize() / 2 - 1;
-        y = map.GetSize() - 1;
+        col = map.GetSize() / 2 - 1;
+        row = -1;
         score = 0;
         isMoving = false;
     }
@@ -24,6 +33,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        this.transform.position = new Vector3(x + 0.5f,y + 0.5f,0);
+        //this.transform.position = new Vector3(x,y,0);
         if(Input.GetKeyDown("a")) {
             breakLeft();
         }
@@ -51,16 +62,16 @@ public class Player : MonoBehaviour
     }
     public void breakLeft(){
 
-        map.Break(--x,y);
+        map.Break(row,--col);
     }
 
     public void breakRight(){
 
-        map.Break(++x,y);
+        map.Break(row, ++col);
     }
     public void breakDown(){
 
-        map.Break(x,--y);
+        map.Break(++row, col);
     }
 
    public void addItemDigged(string item, double value){

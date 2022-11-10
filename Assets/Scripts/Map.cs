@@ -27,18 +27,18 @@ public class Map : MonoBehaviour
     void Start()
     {   
         broken = Instantiate(Resources.Load ("Prefab/Blocks/" + BlockType.None) as GameObject).GetComponent<Block>();
-        for (var y = 0; y < sizeOfLevel; y++)
+        for (var row = 0; row < sizeOfLevel; row++)
         {
-            for (var x = 0; x < sizeOfLevel; x++)
+            for (var col = 0; col < sizeOfLevel; col++)
             {   
                 int index = Random.Range(0,8);
                 Debug.Log("Prefab/Blocks/" + blocksPath[index]);
 
-                blocks[x,y] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[0]) as GameObject).GetComponent<Block>();
+                blocks[row,col] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[0]) as GameObject).GetComponent<Block>();
                 
                 Debug.Log("Loaded");
-                var currentTile = blocks[x,y].tile;
-                tileMap.SetTile(new Vector3Int(x,y,0), currentTile);
+                var currentTile = blocks[row,col].tile;
+                tileMap.SetTile(new Vector3Int(col,-row,0), currentTile);
             }
         }
     }
@@ -53,9 +53,9 @@ public class Map : MonoBehaviour
         return sizeOfLevel;
     }
 
-    public void Break(int x, int y)
+    public void Break(int row, int col)
     {
-        blocks[x,y].onBreak();
-        tileMap.SetTile(new Vector3Int(x,y,0),broken.tile);
+        blocks[row,col].onBreak();
+        tileMap.SetTile(new Vector3Int(col,-row,0),broken.tile);
     }
 }
