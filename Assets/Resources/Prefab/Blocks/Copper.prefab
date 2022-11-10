@@ -97,9 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461011263f883f84d833bf15b5806930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 5734ca85d24d08b48993ec5634c5a7fc, type: 2}
-  name: Copper
+  player: {fileID: 0}
+  tile: {fileID: 11400000, guid: 87d6c3e0b8681ff549b2b2d60bd59b3c, type: 2}
   timer: {fileID: 0}
   value: 100
-  player: {fileID: 0}
+  type: 3
   resistence: 1

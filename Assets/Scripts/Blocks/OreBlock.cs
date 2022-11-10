@@ -26,7 +26,7 @@ public class OreBlock : Block{
 
       new void onBreak() {
         
-        player.addItemDigged(name,value);
+        player.addItemDigged(type.ToString(),value);
         base.onBreak();
        
     }

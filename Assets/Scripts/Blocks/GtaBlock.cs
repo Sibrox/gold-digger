@@ -40,7 +40,7 @@ public class GtaBlock : Block {
         
     }
 
-    public void onBreak() {
+    new void onBreak() {
         
         timer.reset();
         score = timer.timer;

@@ -97,9 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44393772014923f4bb035bf04996ffff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
-  name: Freeze
+  player: {fileID: 0}
+  tile: {fileID: 11400000, guid: 9e8c8ace6b7b9c64ebb4216fb310e799, type: 2}
   timer: {fileID: 0}
   value: 0
-  player: {fileID: 0}
+  type: 1
   freezingTimer: 2

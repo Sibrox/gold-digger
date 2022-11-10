@@ -19,7 +19,7 @@ public class MimicBlock : Block
         }
     }
 
-    public void onBreak(){
+    new void onBreak(){
 
         timer.gameOver();
     }

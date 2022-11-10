@@ -97,9 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 461011263f883f84d833bf15b5806930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
-  name: Iron
+  player: {fileID: 0}
+  tile: {fileID: 11400000, guid: 78d676543f7dbfa11adf5234bf9b37d0, type: 2}
   timer: {fileID: 0}
   value: 500
-  player: {fileID: 0}
+  type: 4
   resistence: 2

@@ -9,26 +9,31 @@ public class Player : MonoBehaviour
     public Map map;
     public int x,y;
     public double score;
+
+    bool isMoving;
     
     // Start is called before the first frame update
     void Start()
     {
-        x = 0;
+        x = map.GetSize() / 2 - 1;
+        y = map.GetSize() - 1;
         score = 0;
-        y = map.sizeOfLevel/2;
+        isMoving = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey("a")) {
-            Debug.Log("LEFT");
+        if(Input.GetKeyDown("a")) {
             breakLeft();
         }
-        if(Input.GetKey("d")) {
-            Debug.Log("RIGHT");
+        if(Input.GetKeyDown("d")) {
             breakRight();
         }
+        if(Input.GetKeyDown("s")) {
+            Debug.Log("DOwn");
+            breakDown();
+        } 
     }
 
     public string getTotalBlockDigged(){
@@ -41,7 +46,7 @@ public class Player : MonoBehaviour
             recapLevelString += item.Key+" :"+item.Value + "; ";
             totalBlockDigged += item.Value;
         }
-
+        
         return recapLevelString.Insert(0,"Total block digged: "+totalBlockDigged);
     }
     public void breakLeft(){
@@ -55,7 +60,7 @@ public class Player : MonoBehaviour
     }
     public void breakDown(){
 
-        map.Break(x,++y);
+        map.Break(x,--y);
     }
 
    public void addItemDigged(string item, double value){

@@ -97,10 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd1ab7f402b20949b9e4972ab3b23cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
-  name: Unbreakable
+  player: {fileID: 0}
+  tile: {fileID: 11400000, guid: 5c782d30cacf3508da46b5a907b298a9, type: 2}
   timer: {fileID: 0}
   value: 0
-  player: {fileID: 0}
-  player: {fileID: 0}
+  type: 7
   stunTimer: 2

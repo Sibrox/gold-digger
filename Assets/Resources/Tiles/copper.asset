@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: freeze
+  m_Name: copper
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: dbc8fa5450d1f507b9dafd3826d6a5df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f0fd9b6c154d76b089d091b39a366ed4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1

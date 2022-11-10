@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fc6b2a631f15284bad8936ba63a63a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
-  name: Mimic
+  player: {fileID: 0}
+  tile: {fileID: 11400000, guid: cda6f1b0f46d43806ab86cddac99cb6c, type: 2}
   timer: {fileID: 0}
   value: 0
-  player: {fileID: 0}
+  type: 6

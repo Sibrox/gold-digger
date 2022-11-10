@@ -5,6 +5,6 @@ public class BaseBlock : Block {
     
 
     void Update() {
-        player.addItemDigged(name,value);
+        player.addItemDigged(type.ToString(),value);
     }
 }   

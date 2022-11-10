@@ -21,7 +21,7 @@ public class FreezeBlock : Block
         }
     }
 
-    public void onBreak(){
+    new void onBreak(){
 
         timer.freeze(freezingTimer);
     }
