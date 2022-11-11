@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class GtaBlock : Block {
     public int resistence = 5;
-    private KeyCode[] pool,sequence;
+    public KeyCode[] pool,sequence;
     public int index = 0;
-    public double score;
+    public double maxScore = 10000;
+    public double slowRate = 2.0;
     public bool started = false;
+    public double stunTime = 2;
 
     void Start() {
         Debug.Log("Spawn");
@@ -18,32 +20,30 @@ public class GtaBlock : Block {
 
     void Update() {
 
-    if(started){
-
-        score -= Time.deltaTime;
-
-        if(Input.GetKey(sequence[index])){
-            resistence--;
-            index++;
-        }
-        else if(!Input.GetKey(sequence[index])){
-            started = false;
-            //onStun();
-        }
-        if(resistence == 0)
-        {
-            started = false;
-            //reward
-            //destroy
+        if(started) {
+            if(Input.GetKey(sequence[index])){
+                resistence--;
+                index++;
+            }
+            else if(!Input.GetKey(sequence[index])){
+                started = false;
+                player.stun(stunTime);
+            }
+            if(resistence == 0)
+            {
+                started = false;
+                //reward
+                //destroy
+            }
         }
     }
-        
-    }
 
-    new void onTap() {
+    public override bool onTap() {
         
         timer.reset();
-        score = timer.timer;
+        timer.slow(slowRate);
         started = true;
+        player.stop();
+        return true;
     }
 }

@@ -9,6 +9,8 @@ public class Timer : MonoBehaviour
     public bool isOver = false;
     public bool isFreezed = false;
 
+    public double slowRate = 1.0;
+
     public Player player;
     void Start()
     {
@@ -23,7 +25,7 @@ public class Timer : MonoBehaviour
         }
         if(!isFreezed && !isOver){
 
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime / slowRate;
         }
         
         if(isFreezed){   
@@ -56,5 +58,9 @@ public class Timer : MonoBehaviour
 
         this.freezingTimer = freezingTimer;
         isFreezed = true;
+    }
+
+    public void slow(double rate) {
+        this.slowRate = rate;
     }
 }

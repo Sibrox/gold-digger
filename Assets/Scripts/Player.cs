@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public Map map;
     public int row, col;
 
+    public bool stopped = false;
     public float x {
         get { return col; }  // get method
     }
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
     public double score;
 
     bool isMoving;
+
+    public double stunDuration = 0;
     
     // Start is called before the first frame update
     void Start()
@@ -33,22 +36,32 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(x + 0.5f,y + 0.5f,0);
-        //this.transform.position = new Vector3(x,y,0);
-        if(Input.GetKeyDown("a")) {
-            breakLeft();
+        if(stopped == false) {
+            this.transform.position = new Vector3(x + 0.5f,y + 0.5f,0);
+            //this.transform.position = new Vector3(x,y,0);
+            if(Input.GetKeyDown("a")) {
+                breakLeft();
+            }
+            if(Input.GetKeyDown("d")) {
+                breakRight();
+            }
+            if(Input.GetKeyDown("s")) {
+                Debug.Log("DOwn");
+                breakDown();
+            } 
+            if(Input.GetKeyDown("w")) {
+                Debug.Log("DOwn");
+                breakUp();
+            } 
         }
-        if(Input.GetKeyDown("d")) {
-            breakRight();
+        else {
+            if(stunDuration <= 0) {
+                stopped = false;
+            }
+            else {
+                stunDuration -= Time.deltaTime;
+            }
         }
-        if(Input.GetKeyDown("s")) {
-            Debug.Log("DOwn");
-            breakDown();
-        } 
-        if(Input.GetKeyDown("w")) {
-            Debug.Log("DOwn");
-            breakUp();
-        } 
     }
 
     public string getTotalBlockDigged(){
@@ -103,5 +116,14 @@ public class Player : MonoBehaviour
         }
 
         score += value;
+    }
+
+    public void stun(double stunTime) {
+        stop();
+        stunDuration = stunTime;
+    }
+
+    public void stop() {
+        stopped = true;
     }
 }
