@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Timer : MonoBehaviour
     public Player player;
     void Start()
     {
+       
         timer = baseTime;
         slowRate = 0;
     }
@@ -45,7 +47,9 @@ public class Timer : MonoBehaviour
             }
             
             timer -= Time.deltaTime/slowRate;
-        }    
+        } 
+
+        GetComponent<Image>().fillAmount = (float)(timer/baseTime);
     }
 
     public void reset() {

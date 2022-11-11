@@ -35,7 +35,7 @@ public class Map : MonoBehaviour
                 int index = Random.Range(0,8);
                 Debug.Log("Prefab/Blocks/" + blocksPath[index]);
 
-                blocks[row,col] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[0]) as GameObject).GetComponent<Block>();
+                blocks[row,col] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[index]) as GameObject).GetComponent<Block>();
                 tileMap.SetTile(new Vector3Int(col,-row,0), blocks[row,col].tile);
             }
         }
