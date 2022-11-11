@@ -7,11 +7,11 @@ public class GtaBlock : Block {
     public double score;
     public bool started;
     public int counter = 0;
+    public double slowRate = 2.0;
     public override void Start() {
 
+        base.Start();
         started = false;
-        player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>();
-        timer = GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<Timer>();
         pool = new KeyCode[] {KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D};
         sequence = new KeyCode[resistence];
 
@@ -24,7 +24,7 @@ public class GtaBlock : Block {
 
         if(started){
 
-            score -= Time.deltaTime;
+            score -= Time.deltaTime/slowRate;
 
             if(Input.anyKeyDown){ counter++;} //prende l'input dell'onTap()
 
@@ -44,16 +44,19 @@ public class GtaBlock : Block {
                     started = false;
                     player.setStopped(false);
                     Debug.Log("L'ho smurfata ho fatto "+score+" punti");
+                    timer.slowed = false;
+                    timer.reset();
                     //reward
                     //destroy
                 }
             }
-        }
+        }   
     }
 
     public override bool onTap() {
         
         player.setStopped(true);
+        timer.slowTime(slowRate);
         timer.reset();
         Debug.Log(debug());
         score = timer.timer;
