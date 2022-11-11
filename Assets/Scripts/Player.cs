@@ -34,8 +34,7 @@ public class Player : MonoBehaviour
     {
         if(!stopped){
 
-            this.transform.position = new Vector3(x + 0.5f,y + 0.5f,0);
-            //this.transform.position = new Vector3(x,y,0);
+            this.transform.position = new Vector3(x + 0.5f,y + 0.5f,-10);
             if(Input.GetKeyDown("a")) {
                 breakLeft();
             }
@@ -52,14 +51,12 @@ public class Player : MonoBehaviour
             } 
         }
         else{
-
             if(stunned){
 
                 if(stunDuration < 0){
 
                     stopped = stunned = false;
                 }
-
                 stunDuration -= Time.deltaTime;
             }
         }
@@ -82,6 +79,7 @@ public class Player : MonoBehaviour
     public void breakLeft(){
         var broken = map.Break(row,col - 1);
         if(broken) {
+            isMoving = true;
             col -=1;
         }
     }
@@ -90,6 +88,7 @@ public class Player : MonoBehaviour
 
         var broken = map.Break(row, col + 1);
         if(broken) {
+            isMoving = true;
             col +=1;
         }
     }
@@ -97,6 +96,7 @@ public class Player : MonoBehaviour
 
         var broken = map.Break(row + 1, col);
         if(broken) {
+            isMoving = true;
             row +=1;
         }
     }

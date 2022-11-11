@@ -30,6 +30,7 @@ public class Block : MonoBehaviour, Breakable {
     public virtual bool onTap() {
         player.addItemDigged(type.ToString(),value);
         timer.reset();
+        GetComponent<AudioSource>().Play();
         return true;
     }    
 }

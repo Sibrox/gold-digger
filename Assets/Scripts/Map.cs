@@ -13,6 +13,7 @@ public class Map : MonoBehaviour
     public string[] blocksPath;
 
     Tilemap tileMap;
+    Tilemap background;
     
     void Awake() {
         tileMap = this.GetComponent<Tilemap>();
@@ -62,8 +63,10 @@ public class Map : MonoBehaviour
     public bool Break(int row, int col)
     {
         var broken = blocks[row,col].onTap();
-        if(broken)
+        if(broken) {
+            blocks[row,col] = none;
             tileMap.SetTile(new Vector3Int(col,-row,0),none.tile);
+        }
 
         return broken;
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2509118985452260521}
   - component: {fileID: 2509118985452260520}
-  - component: {fileID: 4200795698081220687}
+  - component: {fileID: 127336119171838243}
   m_Layer: 0
   m_Name: None
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4200795698081220687
+--- !u!114 &127336119171838243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,12 +94,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2509118985452260526}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bd1ab7f402b20949b9e4972ab3b23cc, type: 3}
+  m_Script: {fileID: 11500000, guid: b8b384f99845606db949d5dfe32e1391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   tile: {fileID: 0}
   timer: {fileID: 0}
   value: 0
-  type: 7
-  stunTimer: 2
+  type: 999
