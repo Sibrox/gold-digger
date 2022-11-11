@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
 
     private Dictionary<string,int> playerItems = new Dictionary<string,int>();
     public Map map;
-    public int row, col;
+    public int row, col; 
+    public double score,stunDuration;
+    public bool isMoving, stopped, stunned;
 
     public float x {
         get { return col; }  // get method
@@ -17,38 +19,50 @@ public class Player : MonoBehaviour
         get { return (-row); }  // get method
     }
 
-    public double score;
-
-    bool isMoving;
     
     // Start is called before the first frame update
     void Start()
     {
         col = map.GetSize() / 2 - 1;
         row = 0;
-        score = 0;
-        isMoving = false;
+        score = stunDuration = 0;
+        stopped = isMoving = stunned = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        this.transform.position = new Vector3(x + 0.5f,y + 0.5f,0);
-        //this.transform.position = new Vector3(x,y,0);
-        if(Input.GetKeyDown("a")) {
-            breakLeft();
+        if(!stopped){
+
+            this.transform.position = new Vector3(x + 0.5f,y + 0.5f,0);
+            //this.transform.position = new Vector3(x,y,0);
+            if(Input.GetKeyDown("a")) {
+                breakLeft();
+            }
+            if(Input.GetKeyDown("d")) {
+                breakRight();
+            }
+            if(Input.GetKeyDown("s")) {
+                Debug.Log("DOwn");
+                breakDown();
+            } 
+            if(Input.GetKeyDown("w")) {
+                Debug.Log("DOwn");
+                breakUp();
+            } 
         }
-        if(Input.GetKeyDown("d")) {
-            breakRight();
+        else{
+
+            if(stunned){
+
+                if(stunDuration < 0){
+
+                    stopped = stunned = false;
+                }
+
+                stunDuration -= Time.deltaTime;
+            }
         }
-        if(Input.GetKeyDown("s")) {
-            Debug.Log("DOwn");
-            breakDown();
-        } 
-        if(Input.GetKeyDown("w")) {
-            Debug.Log("DOwn");
-            breakUp();
-        } 
     }
 
     public string getTotalBlockDigged(){
@@ -103,5 +117,17 @@ public class Player : MonoBehaviour
         }
 
         score += value;
+    }
+
+    public void setStopped(bool stopped){
+
+        this.stopped = stopped;
+    }
+
+    public void stun(double stunDuration){
+
+        stopped = true;
+        stunned = true;
+        this.stunDuration = stunDuration;
     }
 }

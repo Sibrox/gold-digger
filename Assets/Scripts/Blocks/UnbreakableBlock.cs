@@ -13,6 +13,7 @@ public class UnbreakableBlock : Block
     }
 
     public override bool onTap(){
+        player.stun(1.0);
         return false;
     }
 }

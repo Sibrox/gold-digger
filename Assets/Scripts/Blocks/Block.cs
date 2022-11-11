@@ -22,7 +22,7 @@ public class Block : MonoBehaviour, Breakable {
     public double value;
     public BlockType type;
 
-    void Start() {
+    public virtual void Start() {
         player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>();
         timer = GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<Timer>();
     }
