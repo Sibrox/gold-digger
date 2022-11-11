@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sizeOfLevel: 20
-  broken: {fileID: 0}
+  none: {fileID: 0}
   blocksPath: []
 --- !u!483693784 &2055759313
 TilemapRenderer:

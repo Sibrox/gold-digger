@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  tile: {fileID: 11400000, guid: 41c36ad0ceda20e72a609cffc8371425, type: 2}
+  tile: {fileID: 0}
   timer: {fileID: 0}
   value: 0
   type: 7
