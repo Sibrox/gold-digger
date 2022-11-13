@@ -10,6 +10,7 @@ public enum BlockType {
     Gold = 5,
     Mimic = 6,
     Unbreakable = 7,
+    Caos = 8,
     None = 999
 }
 

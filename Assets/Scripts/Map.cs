@@ -9,15 +9,13 @@ public class Map : MonoBehaviour
 
     public Block[,] blocks;
     public Block none;
-
     public string[] blocksPath;
-
     Tilemap tileMap;
     Tilemap background;
     
     void Awake() {
         tileMap = this.GetComponent<Tilemap>();
-        blocksPath = new string[8];
+        blocksPath = new string[9];
         for(var i = 0; i <  blocksPath.Length; i++) {
             blocksPath[i] = ((BlockType) i).ToString();
         }
@@ -33,7 +31,7 @@ public class Map : MonoBehaviour
         {
             for (var col = 1; col < sizeOfLevel - 1; col++)
             {   
-                int index = Random.Range(0,8);
+                int index = Random.Range(0,9);
                 Debug.Log("Prefab/Blocks/" + blocksPath[index]);
 
                 blocks[row,col] = Instantiate(Resources.Load ("Prefab/Blocks/" + blocksPath[index]) as GameObject).GetComponent<Block>();

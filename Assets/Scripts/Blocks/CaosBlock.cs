@@ -10,5 +10,6 @@ public class CaosBlock : Block{
     public override bool onTap(){
 
         player.confuse(caosDuration);
+        return true;
     }
 }
