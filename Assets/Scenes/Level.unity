@@ -226,9 +226,11 @@ MonoBehaviour:
   col: 0
   score: 0
   stunDuration: 0
+  caosDuration: 0
   isMoving: 0
   stopped: 0
   stunned: 0
+  confused: 0
 --- !u!1 &416615374
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +470,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1326737613}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e9f5d0372a035fcbdb42154932e22de1, type: 3}

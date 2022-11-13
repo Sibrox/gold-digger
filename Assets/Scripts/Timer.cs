@@ -37,6 +37,8 @@ public class Timer : MonoBehaviour
                     freezingTimer = 0;
                     freezed = false;
                 }
+
+                // BUG INTERAZIONE FREZZE + SLOW TIME CON GTA BLOCK-
             }
         }
         else{
