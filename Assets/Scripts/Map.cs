@@ -115,6 +115,7 @@ public class Map : MonoBehaviour
 
         int row = 0;
         int x = xStart;
+        bool firstTime = true;
         Direction lastDirection = Direction.DOWN;
 
         while (row != CHUNK_HEIGHT - 1) {
@@ -123,7 +124,25 @@ public class Map : MonoBehaviour
             Direction currentDirection = Direction.DOWN;
 
             if(x == 0 || x == CHUNK_WIDTH - 1){
-                currentDirection = Direction.DOWN;
+
+                if(firstTime){
+
+                    currentDirection = Direction.DOWN;
+                    firstTime = false;
+                }
+                else{
+
+                    if(x==0){
+
+                        currentDirection = Direction.RIGHT;
+                        firstTime = true;
+                    }
+                    else{
+
+                        currentDirection = Direction.LEFT;
+                        firstTime = true;
+                    }
+                }
             }
             else {
             
