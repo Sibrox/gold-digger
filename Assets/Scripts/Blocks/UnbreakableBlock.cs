@@ -14,6 +14,7 @@ public class UnbreakableBlock : Block
 
     public override bool onTap(){
         player.stun(1.0);
+        GetComponent<AudioSource>().Play();
         return false;
     }
 }
