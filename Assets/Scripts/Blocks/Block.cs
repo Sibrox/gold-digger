@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public enum BlockType { 
+public enum BlockType
+{
     Base = 0,
     Freeze = 1,
     Gta = 2,
@@ -14,8 +15,9 @@ public enum BlockType {
     None = 999
 }
 
-public class Block : MonoBehaviour, Breakable {
-    
+public class Block : MonoBehaviour, Breakable
+{
+
     public Player player;
     public Tile tile;
     public Timer timer;
@@ -23,15 +25,17 @@ public class Block : MonoBehaviour, Breakable {
     public double value;
     public BlockType type;
 
-    public virtual void Start() {
+    public virtual void Start()
+    {
         player = GameObject.FindGameObjectsWithTag("Player")[0].GetComponent<Player>();
         timer = GameObject.FindGameObjectsWithTag("Timer")[0].GetComponent<Timer>();
     }
 
-    public virtual bool onTap() {
-        player.addItemDigged(type.ToString(),value);
-        timer.reset();
+    public virtual bool OnTap()
+    {
+        player.AddItemDigged(type.ToString(), value);
+        timer.Reset();
         GetComponent<AudioSource>().Play();
         return true;
-    }    
+    }
 }

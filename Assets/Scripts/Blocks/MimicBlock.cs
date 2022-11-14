@@ -5,9 +5,10 @@ using UnityEngine;
 public class MimicBlock : Block
 {
 
-    public override bool onTap(){
-        player.addItemDigged(type.ToString(),value);
-        timer.gameOver();
+    public override bool OnTap()
+    {
+        player.AddItemDigged(type.ToString(), value);
+        timer.GameOver();
         return true;
     }
 }

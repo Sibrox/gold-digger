@@ -6,9 +6,10 @@ public class FreezeBlock : Block
 {
     public double freezingTimer;
 
-    public override bool onTap(){
-        player.addItemDigged(type.ToString(),value);
-        timer.freeze(freezingTimer);
+    public override bool OnTap()
+    {
+        player.AddItemDigged(type.ToString(), value);
+        timer.Freeze(freezingTimer);
         return true;
     }
 }

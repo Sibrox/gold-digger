@@ -2,23 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OreBlock : Block{
+public class OreBlock : Block
+{
 
     public int resistence;
 
-    public override bool onTap() {
-
+    public override bool OnTap()
+    {
         resistence -= 1;
+        if (resistence > 0) return false;
 
-        if( resistence <= 0) {
-
-            timer.reset();
-            player.addItemDigged(type.ToString(),value);
-            return true;
-        }
-        else {
-            return false;
-        }
+        timer.Reset();
+        player.AddItemDigged(type.ToString(), value);
+        return true;
     }
 }
-

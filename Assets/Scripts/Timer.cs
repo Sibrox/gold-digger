@@ -5,78 +5,80 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public double timer,freezingTimer,slowRate;
-    public double baseTime = 5.0;
+    public double remaingTime, freezingTimer, slowRate;
+    public double baseTime = 5;
     public bool over = false;
     public bool freezed = false;
     public bool slowed = false;
     public Player player;
+    public Image timeBar;
+
     void Start()
     {
-       
-        timer = baseTime;
-        slowRate = 0;
+        slowRate = 1.0;
+        remaingTime = baseTime;
+        timeBar = GetComponent<Image>();
     }
 
-    void Update(){
+    void Update()
+    {
 
-        if(!slowed){
-
-            if(timer < 0) {
-                this.gameOver();
-                Debug.Log("GAME OVER");
-            }
-            if(!freezed && !over){
-
-                timer -= Time.deltaTime;
-            }
-            if(freezed){   
-                freezingTimer -= Time.deltaTime;
-                if(freezingTimer < 0){
-
-                    freezingTimer = 0;
-                    freezed = false;
-                }
-
-                // BUG INTERAZIONE FREZZE + SLOW TIME CON GTA BLOCK-
-            }
+        if (remaingTime < 0)
+        {
+            Debug.Log(remaingTime);
+            this.GameOver();
+            Debug.Log("GAME OVER");
         }
-        else{
 
-            if(timer < 0) {
-                this.gameOver();
-                Debug.Log("GAME OVER");
-            }
-            
-            timer -= Time.deltaTime/slowRate;
-        } 
+        if (!freezed && !over)
+        {
+            remaingTime -= Time.deltaTime / slowRate;
+        }
 
-        GetComponent<Image>().fillAmount = (float)(timer/baseTime);
+        UpdateFreeze();
+
+        timeBar.fillAmount = (float)(remaingTime / baseTime);
     }
 
-    public void reset() {
-
-        timer = baseTime;
+    public void Reset()
+    {
+        remaingTime = baseTime;
     }
 
-    public void gameOver(){
+    public void GameOver()
+    {
 
-        timer = 0;
+        remaingTime = 0;
         over = true;
-        var result = player.getTotalBlockDigged();
+        var result = player.TotalBlockDigged();
         Debug.Log(result);
         Debug.Log(player.score);
     }
 
-    public void freeze(double freezingTimer){
-
+    public void Freeze(double freezingTimer)
+    {
         this.freezingTimer = freezingTimer;
         freezed = true;
     }
 
-    public void slowTime(double slowRate){
-
+    public void SetSlowRate(double slowRate)
+    {
         this.slowRate = slowRate;
-        this.slowed = true;
+        this.slowed = slowRate > 1.0 ? true : false;
+    }
+
+    public void UpdateFreeze()
+    {
+        if (freezed == false) return;
+
+        freezingTimer -= Time.deltaTime;
+        if (freezingTimer < 0)
+        {
+
+            freezingTimer = 0;
+            freezed = false;
+        }
+
+        // BUG INTERAZIONE FREZZE + SLOW TIME CON GTA BLOCK-
     }
 }

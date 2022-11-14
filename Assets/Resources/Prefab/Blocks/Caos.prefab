@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  tile: {fileID: 0}
+  tile: {fileID: 11400000, guid: c43a302c1d3963b38847813335bba688, type: 2}
   timer: {fileID: 0}
   value: 0
-  type: 0
+  type: 8
   caosDuration: 2

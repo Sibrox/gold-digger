@@ -6,14 +6,9 @@ public class UnbreakableBlock : Block
 {
     public double stunTimer;
 
-    // Update is called once per frame
-    void Update()
+    public override bool OnTap()
     {
-
-    }
-
-    public override bool onTap(){
-        player.stun(1.0);
+        player.Stun(1.0);
         GetComponent<AudioSource>().Play();
         return false;
     }
