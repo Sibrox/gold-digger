@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public bool isMoving, stopped, stunned, confused;
 
     public Map map;
+
     private Dictionary<string, int> playerItems;
 
     public float x
@@ -23,13 +24,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        row = 0;
-        col = map.GetSize() / 2 - 1;
-
-        score = stunDuration = caosDuration = 0;
-        stopped = isMoving = stunned = confused = false;
-
-        playerItems = new Dictionary<string, int>();
+        Init();
     }
 
     void Update()
@@ -60,18 +55,14 @@ public class Player : MonoBehaviour
         CheckConfusedState();
     }
 
-    public string TotalBlockDigged()
+    public int TotalBlockDigged()
     {
-        int totalBlockDigged = 0;
-        string recapLevelString = new string("");
+        return playerItems.Count;
+    }
 
-        foreach (var item in playerItems)
-        {
-            recapLevelString += item.Key + " :" + item.Value + "; ";
-            totalBlockDigged += item.Value;
-        }
-
-        return recapLevelString.Insert(0, "Total block digged: " + totalBlockDigged);
+    public string TotalBlockDiggedDebug()
+    {
+        return playerItems.ToString();
     }
 
     public void BreakLeft()
@@ -178,5 +169,16 @@ public class Player : MonoBehaviour
         }
 
         stunDuration -= Time.deltaTime;
+    }
+
+    public void Init()
+    {
+        row = 0;
+        col = map.GetSize() / 2 - 1;
+
+        score = stunDuration = caosDuration = 0;
+        stopped = isMoving = stunned = confused = false;
+
+        playerItems = new Dictionary<string, int>();
     }
 }
