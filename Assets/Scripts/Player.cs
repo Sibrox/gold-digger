@@ -57,7 +57,12 @@ public class Player : MonoBehaviour
 
     public int TotalBlockDigged()
     {
-        return playerItems.Count;
+        int nBlock = 0;
+        foreach (var blockType in playerItems)
+        {
+            nBlock += blockType.Value;
+        }
+        return nBlock;
     }
 
     public string TotalBlockDiggedDebug()
