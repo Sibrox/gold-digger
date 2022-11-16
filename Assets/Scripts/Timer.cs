@@ -15,9 +15,7 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        slowRate = 1.0;
-        remaingTime = baseTime;
-        timeBar = GetComponent<Image>();
+        Reset();
     }
 
     void Update()
@@ -43,6 +41,10 @@ public class Timer : MonoBehaviour
     public void Reset()
     {
         remaingTime = baseTime;
+        over = freezed = slowed = false;
+        slowRate = 1.0;
+
+        timeBar = GetComponent<Image>();
     }
 
     public void GameOver()
@@ -50,9 +52,8 @@ public class Timer : MonoBehaviour
 
         remaingTime = 0;
         over = true;
-        var result = player.TotalBlockDigged();
-        Debug.Log(result);
-        Debug.Log(player.score);
+
+        player.Stop(true);
     }
 
     public void Freeze(double freezingTimer)
