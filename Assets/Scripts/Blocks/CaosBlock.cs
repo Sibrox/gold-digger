@@ -11,6 +11,7 @@ public class CaosBlock : Block
     public override bool OnTap()
     {
         player.Confuse(caosDuration);
+        player.AddItemDigged(type.ToString(), 0);
         return true;
     }
 }

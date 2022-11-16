@@ -9,6 +9,12 @@ public enum Direction
     LEFT = 1,
     RIGHT = 2
 }
+public struct SubChunkInfo
+{
+    public int rotation;
+    public int counter;
+    public bool opposite;
+}
 
 public class Map : MonoBehaviour
 {
@@ -69,7 +75,7 @@ public class Map : MonoBehaviour
     }
 
 
-    public void GenerateChunck(int[] entryPoints)
+    public int[][] GenerateChunck(int[] entryPoints)
     {
 
         int[][] chunk = new int[CHUNK_HEIGHT][];
@@ -96,6 +102,8 @@ public class Map : MonoBehaviour
             matrix += "\n";
         }
         Debug.Log(matrix);
+
+        return chunk;
     }
 
     void FindPath(int[][] chunk, int xStart, int nPath)
@@ -154,6 +162,75 @@ public class Map : MonoBehaviour
         }
     }
 
+    void FillMap(int[][] chunk)
+    {
+        for (int i = 0; i < CHUNK_WIDTH; i++)
+        {
+            for (int j = 0; j < CHUNK_HEIGHT; j++)
+            {
+                if (chunk[i][j] > 0)
+                {
+                    SubChunkInfo info = GetSubChunkInfo(chunk, i, j, chunk);
+                    //BlockType[][] subChunk = GenerateSubChunk(info);
+                }
+            }
+        }
+    }
+    /*
+    private BlockType[][] GenerateSubChunk(SubChunkInfo info)
+    {
+
+    }
+    */
+
+    private SubChunkInfo GetSubChunkInfo(int[][] chunk, int i, int j, int[][] prevChunk)
+    {
+        SubChunkInfo subChunkInfo;
+        subChunkInfo.counter = 0;
+        subChunkInfo.rotation = 0;
+        subChunkInfo.opposite = false;
+
+        if ((i == 0 && prevChunk[CHUNK_HEIGHT - 1][j] > 0) || (i >= 0 && chunk[i - 1][j] > 0))
+        {
+            subChunkInfo.counter++;
+        }
+
+        if (j + 1 < CHUNK_WIDTH && chunk[i][j + 1] > 0 && subChunkInfo.counter++ == 0)
+        {
+            subChunkInfo.rotation = 1;
+
+        }
+        else if (subChunkInfo.counter == 1)
+        {
+            subChunkInfo.opposite = true;
+        }
+
+        if (i == CHUNK_HEIGHT - 1 || (i + 1 < CHUNK_HEIGHT && chunk[i + 1][j] > 0))
+        {
+            if (subChunkInfo.counter++ == 0)
+            {
+
+                subChunkInfo.rotation = 2;
+            }
+        }
+        else if (subChunkInfo.counter == 1)
+        {
+            subChunkInfo.opposite = true;
+        }
+
+        if (j - 1 >= 0 && chunk[i][j - 1] > 0 && subChunkInfo.counter++ == 0)
+        {
+            subChunkInfo.rotation = 3;
+
+        }
+        else if (subChunkInfo.counter == 1)
+        {
+
+            subChunkInfo.opposite = true;
+        }
+
+        return subChunkInfo;
+    }
     private void GenerateWorld()
     {
         none = Instantiate(Resources.Load("Prefab/Blocks/" + BlockType.None) as GameObject).GetComponent<Block>();
@@ -178,7 +255,8 @@ public class Map : MonoBehaviour
             tileMap.SetTile(new Vector3Int(sizeOfLevel - 1, -row, 0), blocks[row, sizeOfLevel - 1].tile);
         }
 
-        GenerateChunck(new int[] { 1, 4, 8 });
+        var chunk = GenerateChunck(new int[] { 1, 4, 8 });
+        //wFillMap(chunk);
     }
 
     public void Restart()
