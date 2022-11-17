@@ -2,22 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MiningDirection
+public enum Animation
 {
-    DOWN = 1,
-    UP = 2,
-    LEFT = 3,
-    RIGHT = 4
+    DOWNBREAK = 1,
+    UPBREAK = 2,
+    LEFTBREAK = 3,
+    RIGHTBREAK = 4,
+    MOVELEFT = 5,
+    MOVERIGHT = 6,
 }
 public class Player : MonoBehaviour
 {
-    public int row, col, miningDirection;
+    public int row, col;
     public double score, stunDuration, caosDuration;
     public bool isMoving, stopped, stunned, confused;
     public Animator animator;
-
     public Map map;
-
     private Dictionary<string, int> playerItems;
 
     public float x
@@ -81,18 +81,11 @@ public class Player : MonoBehaviour
     public void BreakLeft()
     {
         var offset = confused ? 1 : -1;
-
-        if (confused)
-        {
-            animator.SetInteger("miningDirection", (int)MiningDirection.RIGHT);
-        }
-        else
-        {
-            animator.SetInteger("miningDirection", (int)MiningDirection.LEFT);
-        }
-
         var broken = map.Break(row, col + offset);
-        if (broken)
+
+        //AnimationHandeler(broken, (int)Direction.LEFT);
+
+        if (broken > 0)
         {
             isMoving = true;
             col += offset;
@@ -102,18 +95,11 @@ public class Player : MonoBehaviour
     public void BreakRight()
     {
         var offset = confused ? -1 : 1;
-
-        if (confused)
-        {
-            animator.SetInteger("miningDirection", (int)MiningDirection.LEFT);
-        }
-        else
-        {
-            animator.SetInteger("miningDirection", (int)MiningDirection.RIGHT);
-        }
-
         var broken = map.Break(row, col + offset);
-        if (broken)
+
+        //AnimationHandeler(broken, (int)Direction.RIGHT);
+
+        if (broken > 0)
         {
             isMoving = true;
             col += offset;
@@ -123,12 +109,12 @@ public class Player : MonoBehaviour
     public void BreakDown()
     {
         var offset = confused ? -1 : 1;
-
         // this is needed because caos block invert status
         // but we need to go down in this case.
         var status_before = confused;
         var broken = map.Break(row + offset, col);
-        if (broken && status_before == false)
+        //AnimationHandeler(broken,Direction.DOWN);
+        if (broken > 0 && status_before == false)
         {
             isMoving = true;
             row += offset;
@@ -143,7 +129,8 @@ public class Player : MonoBehaviour
         // but player can't go down in this case
         var status_before = confused;
         var broken = map.Break(row + offset, col);
-        if (broken && status_before)
+        //AnimationHandeler(broken,Direction.UP);
+        if (broken > 0 && status_before)
         {
             isMoving = true;
             row += offset;
@@ -205,12 +192,81 @@ public class Player : MonoBehaviour
     public void Init()
     {
         row = 0;
-        miningDirection = 0;
         col = map.GetSize() / 2 - 1;
 
         score = stunDuration = caosDuration = 0;
         stopped = isMoving = stunned = confused = false;
 
         playerItems = new Dictionary<string, int>();
+    }
+
+    private void AnimationHandeler(int action, int direction)
+    {
+        //0 Picconata verso direzione nessun movimento.
+        //1 Picconata e poi movimento verso direzione.
+        //2 Nessuna picconata, movimento verso direzione.
+
+        //Tocca comprendere come gestire il non fare un movimento se già si sta muovendo.
+
+        switch (direction)
+        {
+            case (int)Direction.LEFT:
+
+                if (action == 0)
+                {
+                    animator.SetInteger("miningDirection", (int)Animation.LEFTBREAK);
+                }
+                else if (action == 1)
+                {
+                    animator.SetInteger("miningDirection", (int)Animation.LEFTBREAK);
+
+                    while (animator.GetCurrentAnimatorStateInfo(0).IsName("player_break_left"))
+                    {
+
+                    }
+
+                    animator.SetInteger("miningDirection", (int)Animation.MOVELEFT);
+                }
+                else
+                {
+                    animator.SetInteger("miningDirection", (int)Animation.MOVELEFT);
+                }
+
+                break;
+            case (int)Direction.RIGHT:
+
+                if (action == 0)
+                {
+                    animator.SetInteger("miningDirection", (int)Animation.RIGHTBREAK);
+                }
+                else if (action == 1)
+                {
+                    animator.SetInteger("miningDirection", (int)Animation.RIGHTBREAK);
+
+                    while (animator.GetCurrentAnimatorStateInfo(0).IsName("player_break_right"))
+                    {
+
+                    }
+
+                    animator.SetInteger("miningDirection", (int)Animation.MOVERIGHT);
+                }
+                else
+                {
+                    animator.SetInteger("miningDirection", (int)Animation.MOVERIGHT);
+                }
+
+                break;
+            case (int)Direction.UP:
+
+                if (action == 1)
+                {
+                    animator.SetInteger("miningDirection", (int)Animation.UPBREAK);
+                }
+                break;
+            case (int)Direction.DOWN:
+
+                animator.SetInteger("miningDirection", (int)Animation.DOWNBREAK);
+                break;
+        }
     }
 }

@@ -7,7 +7,8 @@ public enum Direction
 {
     DOWN = 0,
     LEFT = 1,
-    RIGHT = 2
+    RIGHT = 2,
+    UP = 3
 }
 public struct SubChunkInfo
 {
@@ -62,18 +63,25 @@ public class Map : MonoBehaviour
         return sizeOfLevel;
     }
 
-    public bool Break(int row, int col)
+    public int Break(int row, int col)
     {
         var broken = blocks[row, col].OnTap();
+        var returningValue = 0;
+
         if (broken)
         {
             blocks[row, col] = none;
             tileMap.SetTile(new Vector3Int(col, -row, 0), none.tile);
         }
 
-        return broken;
-    }
+        if (broken)
+        {
 
+            returningValue = blocks[row, col] is None ? 2 : 1;
+        }
+
+        return returningValue;
+    }
 
     public int[][] GenerateChunck(int[] entryPoints)
     {
