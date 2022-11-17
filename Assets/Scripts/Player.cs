@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MiningDirection
+{
+    DOWN = 1,
+    UP = 2,
+    LEFT = 3,
+    RIGHT = 4
+}
 public class Player : MonoBehaviour
 {
-    public int row, col;
+    public int row, col, miningDirection;
     public double score, stunDuration, caosDuration;
     public bool isMoving, stopped, stunned, confused;
+    public Animator animator;
 
     public Map map;
 
@@ -74,6 +82,15 @@ public class Player : MonoBehaviour
     {
         var offset = confused ? 1 : -1;
 
+        if (confused)
+        {
+            animator.SetInteger("miningDirection", (int)MiningDirection.RIGHT);
+        }
+        else
+        {
+            animator.SetInteger("miningDirection", (int)MiningDirection.LEFT);
+        }
+
         var broken = map.Break(row, col + offset);
         if (broken)
         {
@@ -85,6 +102,15 @@ public class Player : MonoBehaviour
     public void BreakRight()
     {
         var offset = confused ? -1 : 1;
+
+        if (confused)
+        {
+            animator.SetInteger("miningDirection", (int)MiningDirection.LEFT);
+        }
+        else
+        {
+            animator.SetInteger("miningDirection", (int)MiningDirection.RIGHT);
+        }
 
         var broken = map.Break(row, col + offset);
         if (broken)
@@ -179,6 +205,7 @@ public class Player : MonoBehaviour
     public void Init()
     {
         row = 0;
+        miningDirection = 0;
         col = map.GetSize() / 2 - 1;
 
         score = stunDuration = caosDuration = 0;
